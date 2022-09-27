@@ -6,5 +6,12 @@ app = Flask(__name__)
 def index():
     return "Hello, World!"
 
+@app.route('/api/<id>/')
+def user_profile(user_login):
+    return "Привет, #{}. Введите следующие данные:".format(user_login)
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
