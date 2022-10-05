@@ -1,17 +1,27 @@
-from flask import Flask
+
+from urllib import request
+from flask import Flask, request, json
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/user', methods=['GET','POST'])
 def index():
-    return "Hello, World!"
+    if request.method == 'POST':
 
-@app.route('/api/<id>/')
-def user_profile(user_login):
-    return "Привет, #{}. Введите следующие данные:".format(user_login)
+        data = request.json
 
+        print(data)    
+
+        with open('data.json', 'a') as outfile:
+            json.dump(data, outfile)
+        
+        return "200"
+    if request.method == 'GET':
+
+        return data
+ 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=3005, debug=True)
 
 
 
